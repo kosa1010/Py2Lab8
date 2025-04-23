@@ -108,6 +108,7 @@ def delete_book(book_id):
 Szablony (ang. templates) w kontekście aplikacji webowych, to pliki HTML z dodatkami, które pozwalają dynamicznie generować zawartość strony w zależności od danych z aplikacji.
 We Flasku szablony są obsługiwane przez silnik Jinja2 — dzięki niemu możesz np. wstawić dane z Pythona do HTML-a, tworzyć pętle, warunki, dziedziczyć układy stron itp.
 Szablony umieszczamy w katalogu templates
+
 Szablon `authors.html`
 ```HTML
 <!doctype html>
