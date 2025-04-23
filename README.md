@@ -42,5 +42,42 @@ W projekcie wykorzyatna zostanie baza danych SQLite
 
 ### Modele danych (models.py)
 Modele danych to reprezentacje struktur danych używanych w aplikacji — zazwyczaj opisują, jakie dane są przechowywane oraz jakie relacje zachodzą między nimi. W kontekście aplikacji webowych (np. przy użyciu Flask + SQLAlchemy) model danych często odpowiada tabeli w bazie danych. W tworzonym projekcie wykorzyatmy 2 modele danych reprezentujące dwie tabele połączone ze sobą relacją jeden do wielu których struktura przedstawiona została na poniższym diagramie ERD.
+![image](https://github.com/user-attachments/assets/4247af0c-f9bd-462e-aeb3-c40d54dd4b42)
 
+Definicja modeli odwzwierciedlających powyższe tabele wygląda następująco:
+```Python
+from flask_sqlalchemy import SQLAlchemy
 
+db = SQLAlchemy()
+
+class Author(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(100), nullable=False)
+    books = db.relationship('Book', backref='author', cascade="all, delete", lazy=True)
+
+class Book(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(200), nullable=False)
+    author_id = db.Column(db.Integer, db.ForeignKey('author.id'), nullable=False)
+
+```
+
+### Definicja endpointów
+Endpointy (czyli punkty końcowe) to adresy URL, które aplikacja webowa (np. napisana we Flasku) udostępnia na zewnątrz, aby inne systemy (lub przeglądarka) mogły się z nią komunikować.
+Endpoint to konkretny adres + metoda HTTP, który odpowiada na zapytanie. To właśnie pod tym adresem znajduje się jakaś funkcja aplikacji – np. pokazanie danych, zapisanie formularza, usunięcie rekordu itd.
+
+Do pliku app.py dodajemy poniższe definicje endpointów (wyświetlanie wszystkich ayutorów, dodawanie autora):
+```Python
+@app.route('/')
+def index():
+    authors = Author.query.all()
+    return render_template('authors.html', authors=authors)
+
+@app.route('/add_author', methods=['POST'])
+def add_author():
+    name = request.form['name']
+    new_author = Author(name=name)
+    db.session.add(new_author)
+    db.session.commit()
+    return redirect(url_for('index'))
+```
