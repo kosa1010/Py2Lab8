@@ -108,7 +108,7 @@ def delete_book(book_id):
 Szablony (ang. templates) w kontekście aplikacji webowych, to pliki HTML z dodatkami, które pozwalają dynamicznie generować zawartość strony w zależności od danych z aplikacji.
 We Flasku szablony są obsługiwane przez silnik Jinja2 — dzięki niemu możesz np. wstawić dane z Pythona do HTML-a, tworzyć pętle, warunki, dziedziczyć układy stron itp.
 Szablony umieszczamy w katalogu templates
-Szablon authors.html
+Szablon `authors.html`
 ```HTML
 <!doctype html>
 <html lang="pl">
@@ -120,7 +120,7 @@ Szablon authors.html
 </head>
 <body class="bg-light">
 <div class="container mt-5">
-    <h1 class="mb-4">📚 Lista autorów</h1>
+    <h1 class="mb-4">Lista autorów</h1>
     <div class="row">
         <ul class="list-group mb-4">
             {% for author in authors %}
@@ -149,4 +149,21 @@ Szablon authors.html
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
+```
+Szablon `books.html`
+```HTML
+<h2>Książki autora: {{ author.name }}</h2>
+<ul>
+  {% for book in author.books %}
+    <li>
+      {{ book.title }}
+      <a href="{{ url_for('delete_book', book_id=book.id) }}">Usuń</a>
+    </li>
+  {% endfor %}
+</ul>
+
+<form method="post" action="{{ url_for('add_book', author_id=author.id) }}">
+  <input type="text" name="title" placeholder="Tytuł książki" required>
+  <button type="submit">Dodaj książkę</button>
+</form>
 ```
