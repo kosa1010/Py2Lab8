@@ -67,7 +67,7 @@ class Book(db.Model):
 Endpointy (czyli punkty końcowe) to adresy URL, które aplikacja webowa (np. napisana we Flasku) udostępnia na zewnątrz, aby inne systemy (lub przeglądarka) mogły się z nią komunikować.
 Endpoint to konkretny adres + metoda HTTP, który odpowiada na zapytanie. To właśnie pod tym adresem znajduje się jakaś funkcja aplikacji – np. pokazanie danych, zapisanie formularza, usunięcie rekordu itd.
 
-Do pliku `app.py` dodajemy poniższe definicje endpointów (wyświetlanie wszystkich autorów, dodawanie autora):
+Do pliku `app.py` dodajemy poniższe definicje endpointów:
 ```Python
 @app.route('/')
 def index():
@@ -81,4 +81,26 @@ def add_author():
     db.session.add(new_author)
     db.session.commit()
     return redirect(url_for('index'))
+
+@app.route('/author/<int:author_id>')
+def author_detail(author_id):
+    author = Author.query.get_or_404(author_id)
+    return render_template('books.html', author=author)
+
+@app.route('/add_book/<int:author_id>', methods=['POST'])
+def add_book(author_id):
+    title = request.form['title']
+    new_book = Book(title=title, author_id=author_id)
+    db.session.add(new_book)
+    db.session.commit()
+    return redirect(url_for('author_detail', author_id=author_id))
+
+@app.route('/delete_book/<int:book_id>')
+def delete_book(book_id):
+    book = Book.query.get_or_404(book_id)
+    author_id = book.author_id
+    db.session.delete(book)
+    db.session.commit()
+    return redirect(url_for('author_detail', author_id=author_id))
+
 ```
