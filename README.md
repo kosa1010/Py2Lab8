@@ -112,7 +112,17 @@ Domyślnie aplikacja po uruchomineniu powinna być dostępna pod adresem `http:/
 ### Szablony
 Szablony (ang. templates) w kontekście aplikacji webowych, to pliki HTML z dodatkami, które pozwalają dynamicznie generować zawartość strony w zależności od danych z aplikacji.
 We Flasku szablony są obsługiwane przez silnik Jinja2 — dzięki niemu możesz np. wstawić dane z Pythona do HTML-a, tworzyć pętle, warunki, dziedziczyć układy stron itp.
-Szablony umieszczamy w katalogu templates
+Szablony umieszczamy w katalogu templates.
+
+Najważniejsze rzeczy w szablonach Jinja2:
+
+{{ ... }} – wstawianie wartości,
+
+{% ... %} – sterowanie logiką (pętle, warunki),
+
+{% extends %} – dziedziczenie layoutu (np. wspólne nagłówki i stopki),
+
+{% include %} – wstawianie fragmentów kodu (np. menu, formularze).
 
 Szablon `authors.html`
 ```HTML
