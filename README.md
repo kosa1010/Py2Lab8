@@ -168,3 +168,18 @@ Szablon `books.html`
   <button type="submit">Dodaj książkę</button>
 </form>
 ```
+#### Dodanie edycji autora
+Autor posiada jeden kluczowy atrybut więc wystarczy utworzenie małego formularza z jednym polem `input` oraz przyciskiem zatwierdzajacym dokonane zmiany.
+```HTML
+<form method="post" action="{{ url_for('edit_author', author_id=author.id) }}" class="d-inline">
+    <input type="text" name="new_name" placeholder="Nowe imię" class="form-control d-inline w-auto" required>
+    <button type="submit" class="btn btn-sm btn-warning">Edytuj</button>
+</form>
+```
+Powyższy fomularz możesz scalić z wcześniej utworzonym szablonem `authors.html`.
+Analogicznie aby dokonać usunięcia autora wystarczy dodać przycisk obok autora któy ma zostać usunięty wykorzystujący endpoint `delete_author`.
+```Html
+<a href="{{ url_for('delete_author', author_id=author.id) }}" class="btn btn-sm btn-danger">Usuń</a>
+```
+
+
