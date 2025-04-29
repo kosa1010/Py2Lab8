@@ -177,7 +177,7 @@ Autor posiada jeden kluczowy atrybut więc wystarczy utworzenie małego formular
 </form>
 ```
 Powyższy fomularz możesz scalić z wcześniej utworzonym szablonem `authors.html`.
-Analogicznie aby dokonać usunięcia autora wystarczy dodać przycisk obok autora któy ma zostać usunięty wykorzystujący endpoint `delete_author`.
+Analogicznie aby dokonać usunięcia autora wystarczy dodać przycisk obok autora, który ma zostać usunięty. W przycisku wykorzytaj endpoint `delete_author`.
 ```Html
 <a href="{{ url_for('delete_author', author_id=author.id) }}" class="btn btn-sm btn-danger">Usuń</a>
 ```
