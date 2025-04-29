@@ -107,8 +107,8 @@ if __name__ == '__main__':
     with app.app_context():
         db.create_all()
     app.run(debug=True)
-
 ```
+Domyślnie aplikacja po uruchomineniu powinna być dostępna pod adresem `http://127.0.0.1:5000`
 ### Szablony
 Szablony (ang. templates) w kontekście aplikacji webowych, to pliki HTML z dodatkami, które pozwalają dynamicznie generować zawartość strony w zależności od danych z aplikacji.
 We Flasku szablony są obsługiwane przez silnik Jinja2 — dzięki niemu możesz np. wstawić dane z Pythona do HTML-a, tworzyć pętle, warunki, dziedziczyć układy stron itp.
