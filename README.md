@@ -177,9 +177,15 @@ Autor posiada jeden kluczowy atrybut więc wystarczy utworzenie małego formular
 </form>
 ```
 Powyższy fomularz możesz scalić z wcześniej utworzonym szablonem `authors.html`.
+
 Analogicznie aby dokonać usunięcia autora wystarczy dodać przycisk obok autora, który ma zostać usunięty. W przycisku wykorzytaj endpoint `delete_author`.
 ```Html
 <a href="{{ url_for('delete_author', author_id=author.id) }}" class="btn btn-sm btn-danger">Usuń</a>
 ```
 
-
+### Zadania do samodzielnego wykonania
+1. Dodaj możliwość edycji danych książki.
+2. Wprowadź walidację danych aby zapobiec dodaniu pustych autorów książek.
+3. Dodaj stylizację Bootstrapem w szablonie dotyczacym książek.
+4. Dodaj filtr książek po tytule aby umożliwić użytkownikowi przeszukiwanie książek danego autora.
+5. Stwórz trzeci model (np. Wydawnictwo) i dodaj relację wiele-do-jednego z książkami.
