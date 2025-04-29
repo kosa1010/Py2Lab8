@@ -67,7 +67,7 @@ class Book(db.Model):
 Endpointy (czyli punkty końcowe) to adresy URL, które aplikacja webowa (np. napisana we Flasku) udostępnia na zewnątrz, aby inne systemy (lub przeglądarka) mogły się z nią komunikować.
 Endpoint to konkretny adres + metoda HTTP, który odpowiada na zapytanie. To właśnie pod tym adresem znajduje się jakaś funkcja aplikacji – np. pokazanie danych, zapisanie formularza, usunięcie rekordu itd.
 
-Do pliku `app.py` dodajemy poniższe definicje endpointów:
+Do pliku `app.py` dodajemy poniższe definicje endpointów oraz funkcję `__main__` w której zostanie utworzona struktura bazy danych oraz uruchomiona aplikacja:
 ```Python
 @app.route('/')
 def index():
@@ -102,6 +102,11 @@ def delete_book(book_id):
     db.session.delete(book)
     db.session.commit()
     return redirect(url_for('author_detail', author_id=author_id))
+
+if __name__ == '__main__':
+    with app.app_context():
+        db.create_all()
+    app.run(debug=True)
 
 ```
 ### Szablony
