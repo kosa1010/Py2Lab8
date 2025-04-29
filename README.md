@@ -198,7 +198,7 @@ Analogicznie aby dokonać usunięcia autora wystarczy dodać przycisk obok autor
 <a href="{{ url_for('delete_author', author_id=author.id) }}" class="btn btn-sm btn-danger">Usuń</a>
 ```
 
-### Zadania do samodzielnego wykonania
+### Zadania do wykonania
 1. Dodaj możliwość edycji danych książki.
 2. Wprowadź walidację danych aby zapobiec dodaniu pustych autorów książek.
 3. Dodaj stylizację Bootstrapem w szablonie dotyczacym książek.
