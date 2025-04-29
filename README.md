@@ -116,13 +116,13 @@ Szablony umieszczamy w katalogu templates.
 
 Najważniejsze rzeczy w szablonach Jinja2:
 
-{{ ... }} – wstawianie wartości,
+`{{ ... }}` – wstawianie wartości/wywoływanie endpointu,
 
-{% ... %} – sterowanie logiką (pętle, warunki),
+`{% ... %}` – sterowanie logiką (pętle, warunki),
 
-{% extends %} – dziedziczenie layoutu (np. wspólne nagłówki i stopki),
+`{% extends %}` – dziedziczenie layoutu (np. wspólne nagłówki i stopki),
 
-{% include %} – wstawianie fragmentów kodu (np. menu, formularze).
+`{% include %}` – wstawianie fragmentów kodu (np. menu, formularze).
 
 Szablon `authors.html`
 ```HTML
